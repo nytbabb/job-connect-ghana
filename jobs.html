@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Jobs | JobConnect Ghana</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <header>
+    <div class="logo">JobConnect Ghana</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="jobs.html" class="active">Find Jobs</a></li>
+        <li><a href="post-job.html">Post a Job</a></li>
+        <li><a href="chat.html">Chat</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Jobs Section -->
+  <section class="jobs-container">
+    <h2>Available Jobs</h2>
+    <div class="filters">
+      <input type="text" id="jobSearch" placeholder="Search jobs...">
+      <select id="regionFilter">
+        <option value="">All Regions</option>
+        <option>Ashanti</option>
+        <option>Greater Accra</option>
+        <option>Western</option>
+        <option>Central</option>
+        <option>Northern</option>
+        <option>Eastern</option>
+        <option>Volta</option>
+        <option>Oti</option>
+        <option>Upper East</option>
+        <option>Upper West</option>
+        <option>Bono</option>
+        <option>Bono East</option>
+        <option>Ahafo</option>
+        <option>North East</option>
+        <option>Savannah</option>
+        <option>Western North</option>
+      </select>
+    </div>
+
+    <!-- Job Listings -->
+    <div class="job-listings" id="jobList">
+      <!-- Example Job Card -->
+      <div class="job-card" data-region="Greater Accra">
+        <img src="images/teacher.png" alt="Job Flyer">
+        <h3>Math Teacher</h3>
+        <p><strong>Region:</strong> Greater Accra</p>
+        <p><strong>Salary:</strong> GHS 2,500 / month</p>
+        <p><strong>Deadline:</strong> 30th Sept, 2025</p>
+        <a href="chat.html" class="apply-btn">Apply / Chat</a>
+      </div>
+
+      <div class="job-card" data-region="Ashanti">
+        <img src="images/driver.png" alt="Job Flyer">
+        <h3>Company Driver</h3>
+        <p><strong>Region:</strong> Ashanti</p>
+        <p><strong>Salary:</strong> GHS 1,800 / month</p>
+        <p><strong>Deadline:</strong> 25th Sept, 2025</p>
+        <a href="chat.html" class="apply-btn">Apply / Chat</a>
+      </div>
+
+      <div class="job-card" data-region="Northern">
+        <img src="images/farm.png" alt="Job Flyer">
+        <h3>Farm Assistant</h3>
+        <p><strong>Region:</strong> Northern</p>
+        <p><strong>Salary:</strong> GHS 1,200 / month</p>
+        <p><strong>Deadline:</strong> 15th Oct, 2025</p>
+        <a href="chat.html" class="apply-btn">Apply / Chat</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 JobConnect Ghana | All rights reserved</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+<div class="job-listings" id="jobList">
+  <!-- Jobs will be loaded here dynamically -->
+</div>
+// ====== DISPLAY JOBS ON JOBS PAGE ======
+const jobList = document.getElementById("jobList");
+
+if (jobList) {
+  let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
+
+  if (jobs.length === 0) {
+    jobList.innerHTML = "<p>No jobs available yet. Be the first to post!</p>";
+  } else {
+    jobList.innerHTML = jobs
+      .map(
+        (job) => `
+      <div class="job-card" data-region="${job.region}">
+        <h3>${job.title}</h3>
+        <p><strong>Region:</strong> ${job.region}</p>
+        <p><strong>Salary:</strong> GHS ${job.salary}</p>
+        <p><strong>Deadline:</strong> ${job.deadline}</p>
+        <p><strong>Requirements:</strong> ${job.requirements}</p>
+        <p><strong>Contact:</strong> ${job.contact}</p>
+        <a href="chat.html" class="apply-btn">Apply / Chat</a>
+      </div>
+    `
+      )
+      .join("");
+  }
+}

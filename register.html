@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Job Connect Ghana</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .auth-container {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .auth-container h2 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .auth-container input, .auth-container button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .auth-container button {
+      background: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .auth-container button:hover {
+      background: #1e7e34;
+    }
+    .switch-link {
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Job Connect Ghana</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Jobs</a>
+      <a href="post-job.html">Post a Job</a>
+      <a href="chat.html">Chat</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="auth-container">
+      <h2>Register</h2>
+      <input type="text" id="regName" placeholder="Full Name">
+      <input type="email" id="regEmail" placeholder="Email">
+      <input type="password" id="regPassword" placeholder="Password">
+      <button onclick="registerUser()">Register</button>
+      <div class="switch-link">
+        <p>Already have an account? <a href="login.html">Login here</a></p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>©️ 2025 Job Connect Ghana. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function registerUser() {
+      let name = document.getElementById("regName").value;
+      let email = document.getElementById("regEmail").value;
+      let password = document.getElementById("regPassword").value;
+
+      if (!name || !email || !password) {
+        alert("All fields are required!");
+        return;
+      }
+
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+
+      if (users.find(u => u.email === email)) {
+        alert("Email already registered!");
+        return;
+      }
+
+      let newUser = { name, email, password };
+      users.push(newUser);
+      localStorage.setItem("users", JSON.stringify(users));
+
+      alert("Registration successful! Please login.");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>

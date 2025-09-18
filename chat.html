@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat | JobConnect Ghana</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <header>
+    <div class="logo">JobConnect Ghana</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="jobs.html">Find Jobs</a></li>
+        <li><a href="post-job.html">Post a Job</a></li>
+        <li><a href="chat.html" class="active">Chat</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Chat Section -->
+  <section class="chat-container">
+    <h2>Employer ↔️ Job Seeker Chat</h2>
+    
+    <div id="chatBox" class="chat-box">
+      <!-- Messages will appear here -->
+    </div>
+
+    <div class="chat-input">
+      <input type="text" id="messageInput" placeholder="Type your message..." />
+      <button id="sendBtn">Send</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 JobConnect Ghana | All rights reserved</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+<!-- Add this script before closing </body> -->
+<script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script>
+  const socket = io("http://localhost:5000");
+
+  const chatBox = document.getElementById("chatBox");
+  const messageInput = document.getElementById("messageInput");
+  const sendBtn = document.getElementById("sendBtn");
+
+  // Receive messages
+  socket.on("chatMessage", (msg) => {
+    const div = document.createElement("div");
+    div.classList.add("message", msg.sender);
+    div.innerText = msg.text;
+    chatBox.appendChild(div);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  });
+
+  // Send messages
+  sendBtn.addEventListener("click", () => {
+    const text = messageInput.value.trim();
+    if (!text) return;
+
+    const msg = { sender: "sender", text };
+    socket.emit("chatMessage", msg);
+
+    messageInput.value = "";
+  });
+
+  messageInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") sendBtn.click();
+  });
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat - Job Connect Ghana</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .chat-container {
+      max-width: 600px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .messages {
+      border: 1px solid #ddd;
+      padding: 10px;
+      height: 300px;
+      overflow-y: auto;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      background: #f9f9f9;
+    }
+    .message {
+      padding: 8px 12px;
+      margin: 6px 0;
+      border-radius: 5px;
+      max-width: 75%;
+    }
+    .message.sent {
+      background: #0077cc;
+      color: white;
+      margin-left: auto;
+    }
+    .message.received {
+      background: #eee;
+      color: #333;
+      margin-right: auto;
+    }
+    .chat-input {
+      display: flex;
+      gap: 10px;
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .chat-input button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background: #0077cc;
+      color: white;
+      cursor: pointer;
+    }
+    .chat-input button:hover {
+      background: #005fa3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Job Connect Ghana</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="jobs.html">Jobs</a>
+      <a href="post-job.html">Post a Job</a>
+      <a href="chat.html">Chat</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="chat-container">
+      <h2>Chat with Employer/Employee</h2>
+      <div class="messages" id="messages"></div>
+      <div class="chat-input">
+        <input type="text" id="chatMessage" placeholder="Type a message...">
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>©️ 2025 Job Connect Ghana. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let messages = JSON.parse(localStorage.getItem("chatMessages")) || [];
+
+    function displayMessages() {
+      const messageBox = document.getElementById("messages");
+      messageBox.innerHTML = "";
+      messages.forEach(msg => {
+        const div = document.createElement("div");
+        div.classList.add("message", msg.type);
+        div.textContent = msg.text;
+        messageBox.appendChild(div);
+      });
+      messageBox.scrollTop = messageBox.scrollHeight;
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("chatMessage");
+      const text = input.value.trim();
+      if (text === "") return;
+
+      const newMessage = { text, type: "sent" };
+      messages.push(newMessage);
+      localStorage.setItem("chatMessages", JSON.stringify(messages));
+      input.value = "";
+      displayMessages();
+    }
+
+    // Load old messages when page opens
+    displayMessages();
+  </script>
+</body>
+</html>

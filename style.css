@@ -1,0 +1,342 @@
+/* =========================
+   Global Reset & Body
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f6f9;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* =========================
+   Navbar
+========================= */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1d3557;
+  padding: 15px 30px;
+  color: #fff;
+  flex-wrap: wrap;
+}
+
+header .logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #f1faee;
+}
+
+/* =========================
+   Hero Section
+========================= */
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  background: url('images/ghana-bg.jpg') no-repeat center center/cover;
+  color: #fff;
+}
+
+.hero h1 {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.search-form input,
+.search-form select {
+  padding: 10px;
+  min-width: 200px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+.search-form button {
+  padding: 10px 20px;
+  border: none;
+  background: #e63946;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.search-form button:hover {
+  background: #ff4d6d;
+}
+
+/* =========================
+   Footer
+========================= */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: #1d3557;
+  color: #fff;
+  margin-top: 40px;
+}
+
+/* =========================
+   Jobs Page
+========================= */
+.jobs-container {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.jobs-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1d3557;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.filters input,
+.filters select {
+  padding: 10px;
+  min-width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.job-listings {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.job-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+}
+
+.job-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.job-card h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #1d3557;
+}
+
+.apply-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 15px;
+  background: #e63946;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.apply-btn:hover {
+  background: #ff4d6d;
+}
+
+/* =========================
+   Post Job Form
+========================= */
+.form-container {
+  max-width: 600px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #1d3557;
+}
+
+form label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+form textarea {
+  resize: vertical;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  background: #1d3557;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: #457b9d;
+}
+
+/* =========================
+   Chat Page
+========================= */
+.chat-container {
+  max-width: 600px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
+}
+
+.chat-container h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #1d3557;
+}
+
+.chat-box {
+  height: 400px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.message {
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  max-width: 70%;
+  word-wrap: break-word;
+}
+
+.message.sender {
+  background: #1d3557;
+  color: #fff;
+  margin-left: auto;
+  text-align: right;
+}
+
+.message.receiver {
+  background: #e5e5e5;
+  color: #000;
+  margin-right: auto;
+  text-align: left;
+}
+
+.chat-input {
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.chat-input button {
+  padding: 10px 20px;
+  background: #1d3557;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.chat-input button:hover {
+  background: #457b9d;
+}
+
+/* =========================
+   Responsive Fixes
+========================= */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  .search-form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+}

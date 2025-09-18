@@ -1,0 +1,8 @@
+JobConnect/
+│── index.html         (homepage)
+│── jobs.html          (job listings page)
+│── post-job.html      (employers post jobs)
+│── chat.html          (chat system placeholder)
+│── style.css          (all styling)
+│── script.js          (JavaScript for interactions)
+│── /images            (folder for logos/backgrounds)

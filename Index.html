@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JobConnect Ghana</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <header>
+    <div class="logo">JobConnect Ghana</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="jobs.html">Find Jobs</a></li>
+        <li><a href="post-job.html">Post a Job</a></li>
+        <li><a href="chat.html">Chat</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Connecting Employers & Job Seekers in All 16 Regions of Ghana</h1>
+    <form class="search-form">
+      <input type="text" placeholder="Search for jobs (e.g. Teacher, Driver)">
+      <select>
+        <option value="">Select Region</option>
+        <option>Ashanti</option>
+        <option>Greater Accra</option>
+        <option>Western</option>
+        <option>Central</option>
+        <option>Northern</option>
+        <option>Eastern</option>
+        <option>Volta</option>
+        <option>Oti</option>
+        <option>Upper East</option>
+        <option>Upper West</option>
+        <option>Bono</option>
+        <option>Bono East</option>
+        <option>Ahafo</option>
+        <option>North East</option>
+        <option>Savannah</option>
+        <option>Western North</option>
+      </select>
+      <button type="submit">Search</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 JobConnect Ghana | All rights reserved</p>
+  </footer>
+</body>
+</html>
+<a href="login.html">Login</a>
+<script>
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (user) {
+    document.querySelector("nav").innerHTML += `<span style="margin-left:15px;">Welcome, ${user.name}</span>`;
+  }
+</script>

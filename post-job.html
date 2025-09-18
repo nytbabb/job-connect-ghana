@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post a Job | JobConnect Ghana</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <header>
+    <div class="logo">JobConnect Ghana</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="jobs.html">Find Jobs</a></li>
+        <li><a href="post-job.html" class="active">Post a Job</a></li>
+        <li><a href="chat.html">Chat</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Post Job Form -->
+  <section class="form-container">
+    <h2>Post a Job</h2>
+    <form id="jobForm">
+      <label for="title">Job Title:</label>
+      <input type="text" id="title" placeholder="e.g. Accountant" required>
+
+      <label for="region">Region:</label>
+      <select id="region" required>
+        <option value="">Select Region</option>
+        <option>Ashanti</option>
+        <option>Greater Accra</option>
+        <option>Western</option>
+        <option>Central</option>
+        <option>Northern</option>
+        <option>Eastern</option>
+        <option>Volta</option>
+        <option>Oti</option>
+        <option>Upper East</option>
+        <option>Upper West</option>
+        <option>Bono</option>
+        <option>Bono East</option>
+        <option>Ahafo</option>
+        <option>North East</option>
+        <option>Savannah</option>
+        <option>Western North</option>
+      </select>
+
+      <label for="salary">Salary (GHS):</label>
+      <input type="number" id="salary" placeholder="e.g. 2500" required>
+
+      <label for="deadline">Application Deadline:</label>
+      <input type="date" id="deadline" required>
+
+      <label for="requirements">Job Requirements:</label>
+      <textarea id="requirements" rows="4" placeholder="List job requirements here..." required></textarea>
+
+      <label for="flyer">Upload Job Flyer:</label>
+      <input type="file" id="flyer" accept="image/*">
+
+      <label for="contact">Employer Contact Info:</label>
+      <input type="text" id="contact" placeholder="Phone / Email" required>
+
+      <button type="submit" class="submit-btn">Post Job</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 JobConnect Ghana | All rights reserved</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+<script>
+  // ✅ Check login status
+  const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (!loggedInUser) {
+    alert("You must be logged in to post a job.");
+    window.location.href = "login.html";
+  }
+
+  // ✅ Existing Post Job Code
+  const jobForm = document.getElementById("jobForm");
+  jobForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const title = document.getElementById("jobTitle").value;
+    const region = document.getElementById("jobRegion").value;
+    const salary = document.getElementById("jobSalary").value;
+    const deadline = document.getElementById("jobDeadline").value;
+    const requirements = document.getElementById("jobRequirements").value;
+    const contact = document.getElementById("jobContact").value;
+
+    let jobs = JSON.parse(localStorage.getItem("jobs")) || [];
+    jobs.push({
+      title,
+      region,
+      salary,
+      deadline,
+      requirements,
+      contact,
+      postedBy: loggedInUser.email, // ✅ track who posted the job
+    });
+
+    localStorage.setItem("jobs", JSON.stringify(jobs));
+    alert("Job posted successfully!");
+    jobForm.reset();
+    window.location.href = "jobs.html"; // redirect to jobs page
+  });
+</script>
